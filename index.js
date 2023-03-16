@@ -1,5 +1,4 @@
  import ChatGPTClient from '@waylaidwanderer/chatgpt-api';
-//import { ChatGPTClient } from '../index.js';
 import fs from 'fs';
 import { pathToFileURL } from 'url'
 import { KeyvFile } from 'keyv-file';
@@ -44,6 +43,9 @@ if (settings.storageFilePath && !settings.cacheOptions.store) {
 }
 
 const clientToUse = settings.apiOptions?.clientToUse || settings.clientToUse || 'chatgpt';
+const localPort = settings.oscOptions?.localPort || settings.localPort || '7773';
+const remotePort = settings.oscOptions?.remotePort || settings.remotePort || '7772';
+const remoteAddress=settings.oscOptions?.remoteAddress || settings.remoteAddress || '127.0.0.1';
 
 let chatGptClient;
 switch (clientToUse) {
@@ -65,37 +67,30 @@ switch (clientToUse) {
         break;
 }
 
-
-
-
-
-
-// Create an osc.js UDP Port listening on port 7773 and sending on 7772.
+// Create an osc.js UDP Port
 var udpPort = new osc.UDPPort({
     localAddress: "0.0.0.0",
-    localPort: 7773,
+    localPort: parseInt(localPort,10),
     metadata: true,
 
 
-    remoteAddress: "127.0.0.1",
-    remotePort: 7772,
+    remoteAddress: remoteAddress,
+    remotePort: parseInt(remotePort,10),
     metadata: true
 });
 udpPort.open();
-console.log("OSC Relay running");
+console.log("OSC Relay listening on port "+localPort+" reply @:"+remoteAddress+":"+remotePort);
 // Listen for incoming OSC messages.
 udpPort.on("message", function (oscMsg, timeTag, info) {
-    console.log("osc message:", oscMsg);
-    console.log("info: ", oscMsg.args[0].value);
+    //console.log("osc message:", oscMsg);
+    //console.log("info: ", oscMsg.args[0].value);
 
     var msg=String(oscMsg.args[0].value);
 
-
-
     ( async (chatGptClient,udpPort,msg) => {
-        console.log("message",msg);
+        //console.log("message",msg);
         var response = await chatGptClient.sendMessage(msg);
-        console.log("response", response);
+        //console.log("response", response);
         udpPort.send({
             address: "/GPTSource",
             args: [
@@ -105,10 +100,7 @@ udpPort.on("message", function (oscMsg, timeTag, info) {
                 }
                
             ]
-        }, "127.0.0.1", 7772);
+        }, remoteAddress, remotePort);
 
     })(chatGptClient,udpPort,msg);
-
-    
-
 });
