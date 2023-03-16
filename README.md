@@ -18,4 +18,4 @@
  - run `chatgpt-test.scd` from `ChatGPTToOSC/SuperCollider`
 
 # Notes
- The relay transmits the full assembled response, so based on the query and the selected model it may take more or less time to receive a reply in the OSC client (SuperCollider etc)
+ The relay transmits the fully assembled response, so based on the query and the selected model it may take more or less time to receive a reply in the OSC client (SuperCollider etc)
