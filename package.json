@@ -1,0 +1,22 @@
+{
+    "name": "ChatGPTToOsc",
+    "main": "index.js",
+    "version": "0.0.1",
+    "description": "OSC Relay for ChatGPT API",
+    "author": "Aleksandar Koruga",
+    "homepage": "https://www.github.com/aleksandarkoruga",
+    "license": "(MIT OR GPL-2.0)",
+    "type": "module",
+    "keywords": [
+        "Open Sound Control",
+        "OSC",
+        "sound",
+        "audio",
+        "music",
+        "ChatGPT"
+    ],
+    "dependencies": {
+        "@waylaidwanderer/chatgpt-api": "1.29.0",
+        "osc": "2.4.4"
+    }
+}
