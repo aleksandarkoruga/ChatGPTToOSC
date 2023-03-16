@@ -8,7 +8,7 @@
  - `git clone https://www.github.com/aleksandarkoruga/ChatGPTToOSC`
  - `cd ChatGPTToOSC`
  - rename `settings.example.js` to `settings.js`
- - edit `settings.js` and provide an API key under `openaiApiKey` (insert it between the last ''). you can find your API key following the instructions on  platform.openai.com/account/api-keys 
+ - edit `settings.js` and provide an API key under `openaiApiKey` (insert it between the last ''). you can find your API key following the instructions on  https://platform.openai.com/account/api-keys 
    for further details about the other options refer to the original api https://github.com/waylaidwanderer/node-chatgpt-api
    edit `localPort`, `remotePort` and `remoteAddress` under `oscOptions`  
  
