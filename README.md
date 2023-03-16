@@ -13,7 +13,8 @@
    - To change the default model, edit/add the `model` entry under `modelOptions`, for further details about the model selection and other options please refer to the original API https://github.com/waylaidwanderer/node-chatgpt-api
    - Edit `localPort`, `remotePort` and `remoteAddress` under `oscOptions`  
  
- - from the `ChatGPTToOSC` root folder run `npm install` and `node .` to run the relay.
+ - from the `ChatGPTToOSC` root folder run `npm install` 
+ - `node .` to run the relay.
  - run `chatgpt-test.scd` from `ChatGPTToOSC/SuperCollider`
 
 # Notes
